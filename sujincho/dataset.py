@@ -11,16 +11,19 @@ from torch.utils.data.dataset import Dataset
 class CustomDataset(Dataset):
     def __init__(self, file_path):
         with open(file_path,'rb') as f:
-            self.file=pickle.load(f)
-        self.num_data = len(self.file)
+            self.input_=np.array(pickle.load(f))
+            self.weekday_=np.array(pickle.load(f))
+            self.hour_=np.array(pickle.load(f))
+            self.output_=np.array(pickle.load(f))
+        self.num_data = len(self.input_)
         
 
     def __getitem__(self, index):
-        src = self.file[index]["input_"]
-        hour = self.file[index]["hour_"]
-        weekday = self.file[index]["weekday_"]
+        src = self.input_[index]
+        hour = self.input_[index]
+        weekday = self.input_[index]
         src_rev = np.flip(src)
-        trg = self.file[index]["output_"]
+        trg = self.output_[index]
         return src, src_rev, weekday, hour, trg
     
     def __len__(self):
@@ -41,7 +44,7 @@ class Transpose_tensor:
         src_hour_t = torch.LongTensor(hour)
         src_weekday_t = torch.LongTensor(weekday)
         trg_t = torch.LongTensor(trg)
-        #
+        #..#
         # src = torch.cat(src).view(-1, batch_size).transpose(0, 1)
         # src_rev = torch.cat(src_rev, dim=self.dim).view(-1, batch_size).transpose(0, 1)
         # trg = torch.cat(trg).view(-1, batch_size).transpose(0, 1)
