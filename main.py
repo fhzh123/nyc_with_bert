@@ -65,11 +65,11 @@ def main(args):
     best_val_loss = None
     now = datetime.datetime.now()
     total_loss_list = list()
-    nowDatetime = now.strftime('%Y-%m-%d %H:%M:%S')
+    nowDatetime = now.strftime('%Y-%m-%d_%H_%M_%S') #Windows의 경우 Folder 생성이 ":"가 포함이 되면 제대로 작동이 되지 않음.
     if not os.path.exists('./save/'):
         os.mkdir('./save/')
     if not os.path.exists(f'./save/save_{nowDatetime}'):
-        os.mkdir(f'./save/save_{nowDatetime}')
+        os.mkdir(f'./save/save_{nowDatetime}/')
     hyper_parameter_setting = dict()
     hyper_parameter_setting['n_layers'] = args.n_layers
     hyper_parameter_setting['d_model'] = args.d_model
