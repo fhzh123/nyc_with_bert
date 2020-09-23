@@ -100,9 +100,9 @@ def main(args):
 
                 # Input to Device(CUDA) and split
                 src = input_[0].to(device)
-                src_hour = input_[2].to(device)
-                src_weekday = input_[3].to(device)
-                trg = input_[4].to(device)
+                src_hour = input_[1].to(device)
+                src_weekday = input_[2].to(device)
+                trg = input_[3].to(device)
 
                 # Optimizer Setting
                 optimizer.zero_grad()
@@ -147,12 +147,12 @@ if __name__=='__main__':
     # Args Parser
     parser = argparse.ArgumentParser(description='Argparser')
     #parser.add_argument('--data_path', type=str, default='../data/', help='data path')
-    parser.add_argument('--data_path', type=str, default='./data/', help='data path')
+    parser.add_argument('--data_path', type=str, default='..\\data\\', help='data path')
     parser.add_argument('--data_type', type=str, default='*.pickle', help='data type')
     parser.add_argument('--print_freq', type=int, default=100, help='loss print frequency')
 
     parser.add_argument('--batch_size', type=int, default=8, help='batch size')
-    parser.add_argument('--num_workers', type=int, default=8, help='number of cpu works')
+    parser.add_argument('--num_workers', type=int, default=0, help='number of cpu works')
 
     parser.add_argument('--num_epochs', type=int, default=10, help='number of epochs')
     parser.add_argument('--pad_idx', type=int, default=0, help='padding index')

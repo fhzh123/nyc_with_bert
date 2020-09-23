@@ -35,11 +35,10 @@ class Transpose_tensor:
         self.dim = dim
 
     def transpose_tensor(self, batch):
-        (src, src_rev, weekday, hour, trg) = zip(*batch)
+        (src, weekday, hour, trg) = zip(*batch)
         batch_size = len(src)
 
         src_t = torch.FloatTensor(src)
-        src_rev_t = torch.FloatTensor(src_rev)
         src_hour_t = torch.LongTensor(hour)
         src_weekday_t = torch.LongTensor(weekday)
         trg_t = torch.LongTensor(trg)
